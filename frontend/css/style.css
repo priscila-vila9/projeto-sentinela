@@ -1,7 +1,5 @@
-
-
 body{
-  font-family: Arial;
+  font-family: Arial, Helvetica, sans-serif;
   background:#fce4ec;
   margin:0;
 }
@@ -74,4 +72,179 @@ button:hover{
 }
 
 
-Aqui eu preservei a estrutura e todas as propriedades originais. Só troquei as cores para uma paleta rosa.
+/* =========================================
+   TELA DE LOGIN
+   ========================================= */
+
+/* Fundo somente da página que possui a logo */
+body:has(.logo){
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  background:linear-gradient(
+    135deg,
+    #eef5f8,
+    #d9e8ee
+  );
+}
+
+/* Caixa do login */
+body:has(.logo) .container{
+  width:380px;
+  max-width:90%;
+  margin:20px auto;
+  padding:35px 40px 40px;
+
+  background:#ffffff;
+
+  border-radius:20px;
+
+  border-top:5px solid #d4af37;
+
+  box-shadow:
+    0 15px 40px rgba(0,50,80,0.15),
+    0 3px 10px rgba(0,0,0,0.08);
+
+  text-align:center;
+}
+
+
+/* Logo */
+body:has(.logo) .logo{
+  width:150px;
+  height:150px;
+
+  object-fit:contain;
+
+  display:block;
+
+  margin:0 auto 10px;
+}
+
+
+/* Título */
+body:has(.logo) h2{
+  color:#174a63;
+
+  font-size:22px;
+
+  margin:5px 0 25px;
+
+  font-weight:600;
+}
+
+
+/* Campos do login */
+body:has(.logo) input{
+  width:100%;
+  padding:14px 15px;
+
+  margin-top:0;
+  margin-bottom:15px;
+
+  border:1px solid #cbd8df;
+
+  border-radius:10px;
+
+  background:#f8fafb;
+
+  color:#174a63;
+
+  font-size:15px;
+
+  outline:none;
+
+  transition:0.25s;
+}
+
+
+/* Campo selecionado */
+body:has(.logo) input:focus{
+  border-color:#d4af37;
+
+  background:#ffffff;
+
+  box-shadow:
+    0 0 0 3px rgba(212,175,55,0.15);
+}
+
+
+/* Botão do login */
+body:has(.logo) button{
+  width:100%;
+
+  padding:14px;
+
+  margin-top:0;
+
+  border:none;
+
+  border-radius:10px;
+
+  background:linear-gradient(
+    135deg,
+    #c99a22,
+    #e2bd55
+  );
+
+  color:white;
+
+  font-size:16px;
+
+  font-weight:bold;
+
+  cursor:pointer;
+
+  transition:0.25s;
+
+  box-shadow:
+    0 5px 12px rgba(180,140,30,0.25);
+}
+
+
+/* Botão ao passar o mouse */
+body:has(.logo) button:hover{
+  background:linear-gradient(
+    135deg,
+    #b88916,
+    #d4af37
+  );
+
+  transform:translateY(-2px);
+
+  box-shadow:
+    0 7px 16px rgba(180,140,30,0.35);
+}
+
+
+/* Botão pressionado */
+body:has(.logo) button:active{
+  transform:translateY(0);
+}
+
+
+/* =========================================
+   CELULAR
+   ========================================= */
+
+@media (max-width:480px){
+
+  body:has(.logo) .container{
+    width:90%;
+    max-width:none;
+
+    padding:30px 25px 35px;
+  }
+
+  body:has(.logo) .logo{
+    width:130px;
+    height:130px;
+  }
+
+  body:has(.logo) h2{
+    font-size:20px;
+  }
+
+}

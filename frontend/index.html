@@ -12,91 +12,41 @@
 
 <body>
 
-  <!-- Página de Login -->
-  <div class="login-page">
+  <main class="login-container">
 
-    <!-- Cartão principal -->
-    <div class="login-container">
+    <img
+      src="logo.png"
+      alt="Logo do Hospital"
+      class="logo"
+    >
 
-      <!-- Cabeçalho -->
-      <div class="login-header">
+    <h2>🏥 Sistema Hospitalar</h2>
 
-        <div class="logo-container">
-          <img
-            src="logo.png"
-            alt="Logo do Hospital"
-            class="logo"
-          >
-        </div>
+    <form class="login-form" onsubmit="login(); return false;">
 
-        <div class="title-container">
-          <h1>Sistema Hospitalar</h1>
-          <p>Acesso ao sistema</p>
-        </div>
+      <input
+        id="usuario"
+        type="text"
+        placeholder="Usuário"
+        autocomplete="username"
+        required
+      >
 
-      </div>
+      <input
+        id="senha"
+        type="password"
+        placeholder="Senha"
+        autocomplete="current-password"
+        required
+      >
 
-      <!-- Área do Login -->
-      <div class="login-body">
+      <button type="submit">
+        Entrar
+      </button>
 
-        <form class="login-form" onsubmit="login(); return false;">
+    </form>
 
-          <!-- Usuário -->
-          <div class="login-field">
-
-            <label for="usuario">
-              Usuário
-            </label>
-
-            <input
-              id="usuario"
-              type="text"
-              placeholder="Digite seu usuário"
-              autocomplete="username"
-              required
-            >
-
-          </div>
-
-          <!-- Senha -->
-          <div class="login-field">
-
-            <label for="senha">
-              Senha
-            </label>
-
-            <input
-              id="senha"
-              type="password"
-              placeholder="Digite sua senha"
-              autocomplete="current-password"
-              required
-            >
-
-          </div>
-
-          <!-- Botão -->
-          <div class="login-button-container">
-
-            <button type="submit">
-              Entrar
-            </button>
-
-          </div>
-
-        </form>
-
-      </div>
-
-      <!-- Rodapé -->
-      <div class="login-footer">
-        <p>Acesso restrito aos profissionais autorizados</p>
-      </div>
-
-    </div>
-
-  </div>
-
+  </main>
 
   <script>
 
@@ -149,4 +99,4 @@
 
 </body>
 
-</html>
+</html> coloque div dentro de div pra normalizar esse código. para a logo e o login ficarem uniformizados

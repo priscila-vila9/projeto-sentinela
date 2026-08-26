@@ -48,55 +48,7 @@
 
   </main>
 
-  <script>
-
-    function login() {
-
-      const usuarioInput =
-        document.getElementById("usuario").value;
-
-      const senhaInput =
-        document.getElementById("senha").value;
-
-      fetch("/login", {
-        method: "POST",
-
-        headers: {
-          "Content-Type": "application/json"
-        },
-
-        body: JSON.stringify({
-          usuario: usuarioInput,
-          senha: senhaInput
-        })
-      })
-
-      .then(r => r.json())
-
-      .then(data => {
-
-        if (data.tipo === "triagem") {
-          location.href = "triagem.html";
-        }
-
-        if (data.tipo === "medico") {
-          location.href = "medico.html";
-        }
-
-        if (data.tipo === "atendimento") {
-          location.href = "atendimento.html";
-        }
-
-      })
-
-      .catch(err => {
-        console.error("Erro na requisição:", err);
-      });
-
-    }
-
-  </script>
-
 </body>
+
 
 </html>

@@ -1,48 +1,102 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Sistema Hospitalar - Login</title>
+
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <div class="container">
-    <!-- Espaço reservado para a sua logo -->
-<img src="logo.png" 
-     alt="Logo do Hospital" 
-     class="logo"
-     style="width: 150px; height: 150px; object-fit: contain;">
 
+  <main class="login-container">
 
-    
+    <img
+      src="logo.png"
+      alt="Logo do Hospital"
+      class="logo"
+    >
+
     <h2>🏥 Sistema Hospitalar</h2>
-    <input id="usuario" placeholder="Usuário">
-    <input id="senha" type="password" placeholder="Senha">
-    <button onclick="login()">Entrar</button>
-  </div>
+
+    <form class="login-form" onsubmit="login(); return false;">
+
+      <input
+        id="usuario"
+        type="text"
+        placeholder="Usuário"
+        autocomplete="username"
+        required
+      >
+
+      <input
+        id="senha"
+        type="password"
+        placeholder="Senha"
+        autocomplete="current-password"
+        required
+      >
+
+      <button type="submit">
+        Entrar
+      </button>
+
+    </form>
+
+  </main>
 
   <script>
+
     function login() {
-      const usuarioInput = document.getElementById("usuario").value;
-      const senhaInput = document.getElementById("senha").value;
+
+      const usuarioInput =
+        document.getElementById("usuario").value;
+
+      const senhaInput =
+        document.getElementById("senha").value;
 
       fetch("/login", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+
+        headers: {
+          "Content-Type": "application/json"
+        },
+
         body: JSON.stringify({
           usuario: usuarioInput,
           senha: senhaInput
         })
       })
+
       .then(r => r.json())
+
       .then(data => {
-        if (data.tipo === "triagem") location.href = "triagem.html";
-        if (data.tipo === "medico") location.href = "medico.html";
-        if (data.tipo === "atendimento") location.href = "atendimento.html";
+
+        if (data.tipo === "triagem") {
+          location.href = "triagem.html";
+        }
+
+        if (data.tipo === "medico") {
+          location.href = "medico.html";
+        }
+
+        if (data.tipo === "atendimento") {
+          location.href = "atendimento.html";
+        }
+
       })
-      .catch(err => console.error("Erro na requisição:", err));
+
+      .catch(err => {
+        console.error("Erro na requisição:", err);
+      });
+
     }
+
   </script>
+
 </body>
+
 </html>

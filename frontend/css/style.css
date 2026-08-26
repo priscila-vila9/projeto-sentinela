@@ -1,197 +1,128 @@
-/* ================================
-   CONFIGURAÇÃO GERAL
-================================ */
-
 * {
   box-sizing: border-box;
 }
 
 body {
-  margin: 0;
   font-family: Arial, sans-serif;
-  background: linear-gradient(
-    135deg,
-    #fce4ec,
-    #f8bbd0
-  );
-}
-
-
-/* ================================
-   PÁGINA DE LOGIN
-================================ */
-
-.login-page {
+  background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+  margin: 0;
   min-height: 100vh;
 
   display: flex;
   justify-content: center;
   align-items: center;
-
-  padding: 20px;
 }
 
-
-/* ================================
-   CARTÃO
-================================ */
+/* =====================================
+   CARTÃO DE LOGIN
+===================================== */
 
 .login-container {
-  width: 100%;
+  width: 90%;
   max-width: 400px;
 
   background: #ffffff;
 
+  padding: 35px 30px;
+
   border-radius: 20px;
 
-  padding: 30px;
+  text-align: center;
 
   box-shadow:
     0 10px 30px rgba(173, 20, 87, 0.18);
+
+  border: 1px solid rgba(233, 30, 99, 0.12);
 }
 
-
-/* ================================
-   CABEÇALHO
-================================ */
-
-.login-header {
-  width: 100%;
-
-  display: flex;
-  flex-direction: column;
-
-  align-items: center;
-  text-align: center;
-}
-
-
-/* ================================
+/* =====================================
    LOGO
-================================ */
-
-.logo-container {
-  width: 100%;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  margin-bottom: 10px;
-}
+===================================== */
 
 .logo {
+  display: block;
+
   width: 140px;
   height: 140px;
 
   object-fit: contain;
 
-  display: block;
+  margin: 0 auto 10px auto;
 }
 
-
-/* ================================
+/* =====================================
    TÍTULO
-================================ */
+===================================== */
 
-.title-container {
-  width: 100%;
-}
-
-.title-container h1 {
-  margin: 5px 0;
+.login-container h2 {
+  margin: 5px 0 25px;
 
   color: #ad1457;
 
-  font-size: 24px;
+  font-size: 23px;
+  font-weight: bold;
 }
 
-.title-container p {
-  margin: 5px 0 25px;
-
-  color: #777;
-
-  font-size: 14px;
-}
-
-
-/* ================================
-   ÁREA DO LOGIN
-================================ */
-
-.login-body {
-  width: 100%;
-}
+/* =====================================
+   FORMULÁRIO
+===================================== */
 
 .login-form {
   width: 100%;
 }
 
-
-/* ================================
+/* =====================================
    CAMPOS
-================================ */
+===================================== */
 
-.login-field {
-  width: 100%;
-
-  margin-bottom: 15px;
-}
-
-.login-field label {
+.login-form input {
   display: block;
 
-  margin-bottom: 6px;
-
-  color: #555;
-
-  font-size: 14px;
-  font-weight: bold;
-
-  text-align: left;
-}
-
-.login-field input {
   width: 100%;
   height: 48px;
 
-  padding: 0 14px;
+  margin: 12px 0;
 
-  border: 1px solid #f8bbd0;
-  border-radius: 10px;
+  padding: 0 15px;
 
   background: #fff;
+
+  border: 1px solid #f8bbd0;
+
+  border-radius: 10px;
 
   font-size: 15px;
 
   outline: none;
 
-  transition: 0.2s;
+  transition: all 0.2s ease;
 }
 
-.login-field input:focus {
+.login-form input::placeholder {
+  color: #999;
+}
+
+.login-form input:focus {
   border-color: #e91e63;
 
   box-shadow:
-    0 0 0 3px rgba(233, 30, 99, 0.10);
+    0 0 0 3px rgba(233, 30, 99, 0.12);
 }
 
-
-/* ================================
+/* =====================================
    BOTÃO
-================================ */
+===================================== */
 
-.login-button-container {
-  width: 100%;
+.login-form button {
+  display: block;
 
-  margin-top: 20px;
-}
-
-.login-button-container button {
   width: 100%;
   height: 48px;
 
+  margin-top: 20px;
+
   border: none;
+
   border-radius: 10px;
 
   background: linear-gradient(
@@ -207,69 +138,16 @@ body {
 
   cursor: pointer;
 
-  transition: 0.2s;
+  transition: all 0.2s ease;
 }
 
-.login-button-container button:hover {
-  background: linear-gradient(
-    135deg,
-    #d81b60,
-    #880e4f
-  );
-
+.login-form button:hover {
   transform: translateY(-2px);
 
   box-shadow:
-    0 5px 15px rgba(233, 30, 99, 0.25);
+    0 6px 15px rgba(233, 30, 99, 0.3);
 }
 
-
-/* ================================
-   RODAPÉ
-================================ */
-
-.login-footer {
-  width: 100%;
-
-  margin-top: 25px;
-
-  padding-top: 15px;
-
-  border-top: 1px solid #f8bbd0;
-
-  text-align: center;
-}
-
-.login-footer p {
-  margin: 0;
-
-  color: #999;
-
-  font-size: 12px;
-}
-
-
-/* ================================
-   CELULAR
-================================ */
-
-@media (max-width: 480px) {
-
-  .login-page {
-    padding: 15px;
-  }
-
-  .login-container {
-    padding: 25px 20px;
-  }
-
-  .logo {
-    width: 120px;
-    height: 120px;
-  }
-
-  .title-container h1 {
-    font-size: 21px;
-  }
-
+.login-form button:active {
+  transform: translateY(0);
 }

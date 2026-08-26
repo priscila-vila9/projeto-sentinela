@@ -1,80 +1,86 @@
-body{
-  font-family: Arial;
-  background:#fce4ec;
-  margin:0;
+* {
+  box-sizing: border-box;
 }
 
-.container{
-  width:90%;
-  max-width:900px;
-  margin:20px auto;
-  background:white;
-  padding:20px;
-  border-radius:12px;
-  box-shadow:0 5px 20px rgba(0,0,0,0.1);
+body {
+  font-family: Arial, sans-serif;
+  background: #fce4ec;
+  margin: 0;
+}
+
+.container {
+  width: 90%;
+  max-width: 400px;
+  margin: 40px auto;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  display: block;
+  width: 100px;
+  max-width: 100px;
+  height: auto;
+  max-height: 100px;
+  object-fit: contain;
+  margin: 0 auto 15px auto;
 }
 
 input,
 select,
 textarea,
-button{
-  width:100%;
-  padding:12px;
-  margin-top:10px;
-  border-radius:8px;
-  border:1px solid #f8bbd0;
-  font-size:16px;
+button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border-radius: 8px;
+  border: 1px solid #f8bbd0;
+  font-size: 16px;
 }
 
-textarea{
-  min-height:100px;
-  resize:none;
+textarea {
+  min-height: 100px;
+  resize: none;
 }
 
-button{
-  background:#e91e63;
-  color:white;
-  border:none;
-  cursor:pointer;
+button {
+  background: #e91e63;
+  color: white;
+  border: none;
+  cursor: pointer;
 }
 
-button:hover{
-  background:#c2185b;
+button:hover {
+  background: #c2185b;
 }
 
-.card{
-  border:1px solid #f8bbd0;
-  padding:15px;
-  margin:15px 0;
-  border-radius:10px;
-  background:white;
-  box-shadow:0 2px 8px rgba(0,0,0,0.08);
+.card {
+  border: 1px solid #f8bbd0;
+  padding: 15px;
+  margin: 15px 0;
+  border-radius: 10px;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-.verde{
-  background:#f48fb1;
-  color:white;
-  padding:5px 10px;
-  border-radius:6px;
+.verde {
+  background: #f48fb1;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 6px;
 }
 
-.amarelo{
-  background:#f06292;
-  padding:5px 10px;
-  border-radius:6px;
+.amarelo {
+  background: #f06292;
+  padding: 5px 10px;
+  border-radius: 6px;
 }
 
-.vermelho{
-  background:#ad1457;
-  color:white;
-  padding:5px 10px;
-  border-radius:6px;
+.vermelho {
+  background: #ad1457;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 6px;
 }
-
-.logo {
-    display: block;
-    width: 120px;
-    height: 120px;
-    object-fit: contain;
-    margin: 0 auto 15px auto;
-} centralize a logo e o cadastro da tela de login.faça algo estruturado

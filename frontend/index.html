@@ -12,41 +12,91 @@
 
 <body>
 
-  <main class="login-container">
+  <!-- Página de Login -->
+  <div class="login-page">
 
-    <img
-      src="logo.png"
-      alt="Logo do Hospital"
-      class="logo"
-    >
+    <!-- Cartão principal -->
+    <div class="login-container">
 
-    <h2>🏥 Sistema Hospitalar</h2>
+      <!-- Cabeçalho -->
+      <div class="login-header">
 
-    <form class="login-form" onsubmit="login(); return false;">
+        <div class="logo-container">
+          <img
+            src="logo.png"
+            alt="Logo do Hospital"
+            class="logo"
+          >
+        </div>
 
-      <input
-        id="usuario"
-        type="text"
-        placeholder="Usuário"
-        autocomplete="username"
-        required
-      >
+        <div class="title-container">
+          <h1>Sistema Hospitalar</h1>
+          <p>Acesso ao sistema</p>
+        </div>
 
-      <input
-        id="senha"
-        type="password"
-        placeholder="Senha"
-        autocomplete="current-password"
-        required
-      >
+      </div>
 
-      <button type="submit">
-        Entrar
-      </button>
+      <!-- Área do Login -->
+      <div class="login-body">
 
-    </form>
+        <form class="login-form" onsubmit="login(); return false;">
 
-  </main>
+          <!-- Usuário -->
+          <div class="login-field">
+
+            <label for="usuario">
+              Usuário
+            </label>
+
+            <input
+              id="usuario"
+              type="text"
+              placeholder="Digite seu usuário"
+              autocomplete="username"
+              required
+            >
+
+          </div>
+
+          <!-- Senha -->
+          <div class="login-field">
+
+            <label for="senha">
+              Senha
+            </label>
+
+            <input
+              id="senha"
+              type="password"
+              placeholder="Digite sua senha"
+              autocomplete="current-password"
+              required
+            >
+
+          </div>
+
+          <!-- Botão -->
+          <div class="login-button-container">
+
+            <button type="submit">
+              Entrar
+            </button>
+
+          </div>
+
+        </form>
+
+      </div>
+
+      <!-- Rodapé -->
+      <div class="login-footer">
+        <p>Acesso restrito aos profissionais autorizados</p>
+      </div>
+
+    </div>
+
+  </div>
+
 
   <script>
 

@@ -1,1 +1,1004 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
 
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Alta Hospitalar</title>
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+
+   ```css
+/* =========================================
+   TELA DE ALTA HOSPITALAR - TEMA ROSA
+========================================= */
+
+body {
+    font-family: Arial, sans-serif;
+    background: #fff5f8;
+    margin: 0;
+    color: #4a3a40;
+}
+
+
+/* CONTAINER PRINCIPAL */
+
+.alta-container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 30px auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(190, 80, 120, 0.15);
+}
+
+
+/* CABEÇALHO */
+
+.cabecalho {
+    border-bottom: 2px solid #f3d5df !important;
+}
+
+.cabecalho h2 {
+    color: #c2185b;
+    font-size: 26px;
+}
+
+
+/* PACIENTE SELECIONADO */
+
+.paciente-selecionado {
+    background: #fff0f5 !important;
+    border: 1px solid #f2bfd0 !important;
+    color: #ad1457;
+    border-radius: 10px;
+}
+
+
+/* SEÇÕES DO FORMULÁRIO */
+
+.secao {
+    background: #fffafb !important;
+    border: 1px solid #f1d2dc !important;
+    border-radius: 12px;
+    margin-top: 22px;
+    padding: 20px;
+    transition: 0.2s;
+}
+
+.secao:hover {
+    border-color: #e8a9bd !important;
+    box-shadow: 0 3px 12px rgba(194, 24, 91, 0.06);
+}
+
+
+/* TÍTULOS DAS SEÇÕES */
+
+.secao h3 {
+    color: #c2185b;
+    border-bottom: 1px solid #f2d2dc !important;
+}
+
+
+/* LABELS */
+
+.campo label,
+.secao label {
+    color: #6d4654;
+}
+
+
+/* CAMPOS */
+
+.campo input,
+.campo select,
+.campo textarea {
+    border: 1px solid #e1b8c6 !important;
+    background: #ffffff;
+    color: #4a3a40;
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+
+/* CAMPO AO CLICAR */
+
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus {
+    outline: none;
+    border-color: #d81b60 !important;
+    box-shadow: 0 0 0 3px rgba(216, 27, 96, 0.10);
+}
+
+
+/* PLACEHOLDER */
+
+.campo input::placeholder,
+.campo textarea::placeholder {
+    color: #b58d9a;
+}
+
+
+/* SELECT */
+
+.campo select {
+    cursor: pointer;
+}
+
+
+/* CHECKBOXES */
+
+.status-alta {
+    background: #fff4f7;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #f1d2dc;
+}
+
+.status-alta input[type="checkbox"] {
+    accent-color: #d81b60;
+    cursor: pointer;
+}
+
+
+/* BOTÃO VOLTAR */
+
+.btn-voltar {
+    background: #9e5873 !important;
+    border: none;
+    color: white;
+    padding: 10px 17px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-voltar:hover {
+    background: #7d4058 !important;
+    transform: translateY(-1px);
+}
+
+
+/* BOTÃO LIMPAR */
+
+.btn-limpar {
+    background: #f8d7e2 !important;
+    color: #a3154d !important;
+    border: 1px solid #edb6c9 !important;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-limpar:hover {
+    background: #f3c1d2 !important;
+}
+
+
+/* BOTÃO CONFIRMAR ALTA */
+
+.btn-salvar {
+    background: #d81b60 !important;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(216, 27, 96, 0.20);
+    transition: 0.2s;
+}
+
+.btn-salvar:hover {
+    background: #ad1457 !important;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 14px rgba(216, 27, 96, 0.25);
+}
+
+
+/* CAMPOS OBRIGATÓRIOS */
+
+.obrigatorio {
+    color: #d81b60 !important;
+}
+
+
+/* LINHAS */
+
+.linha {
+    gap: 18px;
+}
+
+
+/* BOTÕES */
+
+.botoes {
+    border-top: 1px solid #f3d5df;
+    padding-top: 20px;
+}
+
+
+/* BARRA DE ROLAGEM */
+
+::-webkit-scrollbar {
+    width: 9px;
+}
+
+::-webkit-scrollbar-track {
+    background: #fff0f5;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #e6a2b8;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #d81b60;
+}
+
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 700px) {
+
+    .alta-container {
+        width: 94%;
+        padding: 18px;
+    }
+
+    .cabecalho h2 {
+        font-size: 22px;
+    }
+
+}
+```
+
+  </style>
+
+</head>
+
+
+<body>
+
+<div class="alta-container">
+
+  <!-- CABEÇALHO -->
+
+  <div class="cabecalho">
+
+    <h2>🏥 Alta Hospitalar</h2>
+
+    <button
+      class="btn-voltar"
+      onclick="window.location.href='medico.html'"
+    >
+      ← Voltar
+    </button>
+
+  </div>
+
+
+  <!-- PACIENTE SELECIONADO -->
+
+  <div class="paciente-selecionado">
+
+    👤 Paciente:
+    <span id="nomePaciente">
+      Não selecionado
+    </span>
+
+  </div>
+
+
+  <form id="formAlta">
+
+
+    <!-- =========================
+         IDENTIFICAÇÃO
+    ========================== -->
+
+    <div class="secao">
+
+      <h3>👤 Identificação do Paciente</h3>
+
+      <div class="linha">
+
+        <div class="campo">
+
+          <label>
+            Nome completo <span class="obrigatorio">*</span>
+          </label>
+
+          <input
+            type="text"
+            id="nome"
+            required
+          >
+
+        </div>
+
+
+        <div class="campo">
+
+          <label>Data de nascimento</label>
+
+          <input
+            type="date"
+            id="nascimento"
+          >
+
+        </div>
+
+
+        <div class="campo">
+
+          <label>CPF</label>
+
+          <input
+            type="text"
+            id="cpf"
+            placeholder="000.000.000-00"
+          >
+
+        </div>
+
+
+        <div class="campo">
+
+          <label>Telefone</label>
+
+          <input
+            type="tel"
+            id="telefone"
+            placeholder="(00) 00000-0000"
+          >
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- =========================
+         INTERNAÇÃO
+    ========================== -->
+
+    <div class="secao">
+
+      <h3>🏥 Informações da Internação</h3>
+
+      <div class="linha">
+
+        <div class="campo">
+
+          <label>Data de entrada <span class="obrigatorio">*</span></label>
+
+          <input
+            type="date"
+            id="dataEntrada"
+            required
+          >
+
+        </div>
+
+
+        <div class="campo">
+
+          <label>Data da alta <span class="obrigatorio">*</span></label>
+
+          <input
+            type="date"
+            id="dataAlta"
+            required
+          >
+
+        </div>
+
+
+        <div class="campo">
+
+          <label>Setor / Unidade</label>
+
+          <input
+            type="text"
+            id="setor"
+            placeholder="Ex.: Pediatria"
+          >
+
+        </div>
+
+
+        <div class="campo">
+
+          <label>Quarto / Leito</label>
+
+          <input
+            type="text"
+            id="leito"
+            placeholder="Ex.: Quarto 05 - Leito 02"
+          >
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- =========================
+         DIAGNÓSTICO
+    ========================== -->
+
+    <div class="secao">
+
+      <h3>🩺 Informações Médicas</h3>
+
+      <div class="linha">
+
+        <div class="campo campo-completo">
+
+          <label>
+            Diagnóstico de entrada
+          </label>
+
+          <textarea
+            id="diagnosticoEntrada"
+            placeholder="Informe o diagnóstico apresentado na entrada..."
+          ></textarea>
+
+        </div>
+
+
+        <div class="campo campo-completo">
+
+          <label>
+            Diagnóstico final
+            <span class="obrigatorio">*</span>
+          </label>
+
+          <textarea
+            id="diagnosticoFinal"
+            placeholder="Informe o diagnóstico final..."
+            required
+          ></textarea>
+
+        </div>
+
+
+        <div class="campo campo-completo">
+
+          <label>
+            Tratamento realizado
+          </label>
+
+          <textarea
+            id="tratamento"
+            placeholder="Descreva os principais tratamentos realizados durante o atendimento..."
+          ></textarea>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- =========================
+         CONDIÇÃO DO PACIENTE
+    ========================== -->
+
+    <div class="secao">
+
+      <h3>❤️ Condição no Momento da Alta</h3>
+
+      <div class="linha">
+
+        <div class="campo">
+
+          <label>
+            Estado do paciente
+            <span class="obrigatorio">*</span>
+          </label>
+
+          <select id="estado" required>
+
+            <option value="">
+              Selecione
+            </option>
+
+            <option value="Estável">
+              Estável
+            </option>
+
+            <option value="Melhorado">
+              Melhorado
+            </option>
+
+            <option value="Recuperado">
+              Recuperado
+            </option>
+
+            <option value="Necessita acompanhamento">
+              Necessita acompanhamento
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="campo">
+
+          <label>Tipo de alta</label>
+
+          <select id="tipoAlta">
+
+            <option value="">
+              Selecione
+            </option>
+
+            <option value="Alta médica">
+              Alta médica
+            </option>
+
+            <option value="Alta a pedido">
+              Alta a pedido
+            </option>
+
+            <option value="Transferência">
+              Transferência
+            </option>
+
+            <option value="Encaminhamento">
+              Encaminhamento
+            </option>
+
+          </select>
+
+        </div>
+
+      </div>
+
+
+      <label>
+        Condições na alta:
+      </label>
+
+      <div class="status-alta">
+
+        <label>
+          <input
+            type="checkbox"
+            id="semFebre"
+          >
+          Sem febre
+        </label>
+
+        <label>
+          <input
+            type="checkbox"
+            id="alimentacao"
+          >
+          Alimentação adequada
+        </label>
+
+        <label>
+          <input
+            type="checkbox"
+            id="medicamenteEstavel"
+          >
+          Clinicamente estável
+        </label>
+
+      </div>
+
+    </div>
+
+
+    <!-- =========================
+         MEDICAMENTOS
+    ========================== -->
+
+    <div class="secao">
+
+      <h3>💊 Medicamentos e Prescrição</h3>
+
+      <div class="linha">
+
+        <div class="campo campo-completo">
+
+          <label>
+            Medicamentos para casa
+          </label>
+
+          <textarea
+            id="medicamentos"
+            placeholder="Informe medicamento, dose, frequência e duração do tratamento..."
+          ></textarea>
+
+        </div>
+
+
+        <div class="campo campo-completo">
+
+          <label>
+            Cuidados com medicamentos
+          </label>
+
+          <textarea
+            id="cuidadosMedicamentos"
+            placeholder="Ex.: tomar após as refeições, não interromper o tratamento..."
+          ></textarea>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- =========================
+         ORIENTAÇÕES
+    ========================== -->
+
+    <div class="secao">
+
+      <h3>📋 Orientações ao Paciente</h3>
+
+      <div class="linha">
+
+        <div class="campo campo-completo">
+
+          <label>
+            Orientações para casa
+          </label>
+
+          <textarea
+            id="orientacoes"
+            placeholder="Digite os cuidados que o paciente deverá ter após a alta..."
+          ></textarea>
+
+        </div>
+
+
+        <div class="campo">
+
+          <label>
+            Retorno médico
+          </label>
+
+          <input
+            type="date"
+            id="retorno"
+          >
+
+        </div>
+
+
+        <div class="campo">
+
+          <label>
+            Especialidade / profissional
+          </label>
+
+          <input
+            type="text"
+            id="especialidade"
+            placeholder="Ex.: Pediatra"
+          >
+
+        </div>
+
+
+        <div class="campo campo-completo">
+
+          <label>
+            Sinais de alerta
+          </label>
+
+          <textarea
+            id="sinaisAlerta"
+            placeholder="Informe quando o paciente deverá procurar atendimento novamente..."
+          ></textarea>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- =========================
+         RESPONSÁVEL
+    ========================== -->
+
+    <div class="secao">
+
+      <h3>👨‍⚕️ Responsável pela Alta</h3>
+
+      <div class="linha">
+
+        <div class="campo">
+
+          <label>
+            Médico responsável
+            <span class="obrigatorio">*</span>
+          </label>
+
+          <input
+            type="text"
+            id="medico"
+            placeholder="Nome do médico"
+            required
+          >
+
+        </div>
+
+
+        <div class="campo">
+
+          <label>CRM</label>
+
+          <input
+            type="text"
+            id="crm"
+            placeholder="Número do CRM"
+          >
+
+        </div>
+
+
+        <div class="campo campo-completo">
+
+          <label>
+            Observações finais
+          </label>
+
+          <textarea
+            id="observacoes"
+            placeholder="Outras informações importantes sobre a alta..."
+          ></textarea>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- BOTÕES -->
+
+    <div class="botoes">
+
+      <button
+        type="button"
+        class="btn-limpar"
+        onclick="limparFormulario()"
+      >
+        Limpar
+      </button>
+
+      <button
+        type="submit"
+        class="btn-salvar"
+      >
+        ✅ Confirmar Alta
+      </button>
+
+    </div>
+
+
+  </form>
+
+</div>
+
+
+<script>
+
+
+/* =====================================
+   PEGAR PACIENTE DA URL
+===================================== */
+
+const parametros =
+  new URLSearchParams(window.location.search);
+
+
+const paciente =
+  parametros.get("paciente");
+
+
+if (paciente) {
+
+  const nomeDecodificado =
+    decodeURIComponent(paciente);
+
+
+  document.getElementById("nomePaciente")
+    .textContent = nomeDecodificado;
+
+
+  document.getElementById("nome")
+    .value = nomeDecodificado;
+
+}
+
+
+/* =====================================
+   DATA ATUAL
+===================================== */
+
+const hoje =
+  new Date().toISOString().split("T")[0];
+
+
+document.getElementById("dataAlta")
+  .value = hoje;
+
+
+/* =====================================
+   ENVIAR FORMULÁRIO
+===================================== */
+
+document.getElementById("formAlta")
+  .addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+
+    const dadosAlta = {
+
+      paciente:
+        document.getElementById("nome").value,
+
+      nascimento:
+        document.getElementById("nascimento").value,
+
+      cpf:
+        document.getElementById("cpf").value,
+
+      telefone:
+        document.getElementById("telefone").value,
+
+      dataEntrada:
+        document.getElementById("dataEntrada").value,
+
+      dataAlta:
+        document.getElementById("dataAlta").value,
+
+      setor:
+        document.getElementById("setor").value,
+
+      leito:
+        document.getElementById("leito").value,
+
+      diagnosticoEntrada:
+        document.getElementById("diagnosticoEntrada").value,
+
+      diagnosticoFinal:
+        document.getElementById("diagnosticoFinal").value,
+
+      tratamento:
+        document.getElementById("tratamento").value,
+
+      estado:
+        document.getElementById("estado").value,
+
+      tipoAlta:
+        document.getElementById("tipoAlta").value,
+
+      semFebre:
+        document.getElementById("semFebre").checked,
+
+      alimentacao:
+        document.getElementById("alimentacao").checked,
+
+      clinicamenteEstavel:
+        document.getElementById("medicamenteEstavel").checked,
+
+      medicamentos:
+        document.getElementById("medicamentos").value,
+
+      cuidadosMedicamentos:
+        document.getElementById("cuidadosMedicamentos").value,
+
+      orientacoes:
+        document.getElementById("orientacoes").value,
+
+      retorno:
+        document.getElementById("retorno").value,
+
+      especialidade:
+        document.getElementById("especialidade").value,
+
+      sinaisAlerta:
+        document.getElementById("sinaisAlerta").value,
+
+      medico:
+        document.getElementById("medico").value,
+
+      crm:
+        document.getElementById("crm").value,
+
+      observacoes:
+        document.getElementById("observacoes").value
+
+    };
+
+
+    /*
+      Por enquanto os dados são mostrados
+      no console para testar o formulário.
+
+      Depois podemos conectar essa parte
+      ao seu backend usando fetch().
+    */
+
+    console.log("Dados da alta:", dadosAlta);
+
+
+    alert(
+      "✅ Alta hospitalar registrada com sucesso!"
+    );
+
+
+    /*
+      Depois de salvar, volta para o
+      painel médico.
+    */
+
+    window.location.href = "medico.html";
+
+  });
+
+
+/* =====================================
+   LIMPAR FORMULÁRIO
+===================================== */
+
+function limparFormulario() {
+
+  const confirmar =
+    confirm(
+      "Tem certeza que deseja limpar o formulário?"
+    );
+
+
+  if (confirmar) {
+
+    document.getElementById("formAlta").reset();
+
+
+    /*
+      Mantém o nome do paciente
+      após limpar.
+    */
+
+    if (paciente) {
+
+      document.getElementById("nome").value =
+        decodeURIComponent(paciente);
+
+    }
+
+  }
+
+}
+
+</script>
+
+</body>
+
+</html>
+```

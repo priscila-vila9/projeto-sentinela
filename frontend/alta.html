@@ -13,254 +13,357 @@
 
   <style>
 
-
-/* =========================================
-   TELA DE ALTA HOSPITALAR - TEMA ROSA
-========================================= */
-
-body {
-    font-family: Arial, sans-serif;
-    background: #fff5f8;
-    margin: 0;
-    color: #4a3a40;
-}
-
-
-/* CONTAINER PRINCIPAL */
-
-.alta-container {
-    width: 90%;
-    max-width: 1000px;
-    margin: 30px auto;
-    background: #ffffff;
-    padding: 30px;
-    border-radius: 18px;
-    box-shadow: 0 8px 25px rgba(190, 80, 120, 0.15);
-}
-
-
-/* CABEÇALHO */
-
-.cabecalho {
-    border-bottom: 2px solid #f3d5df !important;
-}
-
-.cabecalho h2 {
-    color: #c2185b;
-    font-size: 26px;
-}
-
-
-/* PACIENTE SELECIONADO */
-
-.paciente-selecionado {
-    background: #fff0f5 !important;
-    border: 1px solid #f2bfd0 !important;
-    color: #ad1457;
-    border-radius: 10px;
-}
-
-
-/* SEÇÕES DO FORMULÁRIO */
-
-.secao {
-    background: #fffafb !important;
-    border: 1px solid #f1d2dc !important;
-    border-radius: 12px;
-    margin-top: 22px;
-    padding: 20px;
-    transition: 0.2s;
-}
-
-.secao:hover {
-    border-color: #e8a9bd !important;
-    box-shadow: 0 3px 12px rgba(194, 24, 91, 0.06);
-}
-
-
-/* TÍTULOS DAS SEÇÕES */
-
-.secao h3 {
-    color: #c2185b;
-    border-bottom: 1px solid #f2d2dc !important;
-}
-
-
-/* LABELS */
-
-.campo label,
-.secao label {
-    color: #6d4654;
-}
-
-
-/* CAMPOS */
-
-.campo input,
-.campo select,
-.campo textarea {
-    border: 1px solid #e1b8c6 !important;
-    background: #ffffff;
-    color: #4a3a40;
-    border-radius: 8px;
-    transition: 0.2s;
-}
-
-
-/* CAMPO AO CLICAR */
-
-.campo input:focus,
-.campo select:focus,
-.campo textarea:focus {
-    outline: none;
-    border-color: #d81b60 !important;
-    box-shadow: 0 0 0 3px rgba(216, 27, 96, 0.10);
-}
-
-
-/* PLACEHOLDER */
-
-.campo input::placeholder,
-.campo textarea::placeholder {
-    color: #b58d9a;
-}
-
-
-/* SELECT */
-
-.campo select {
-    cursor: pointer;
-}
-
-
-/* CHECKBOXES */
-
-.status-alta {
-    background: #fff4f7;
-    padding: 12px;
-    border-radius: 8px;
-    border: 1px solid #f1d2dc;
-}
-
-.status-alta input[type="checkbox"] {
-    accent-color: #d81b60;
-    cursor: pointer;
-}
-
-
-/* BOTÃO VOLTAR */
-
-.btn-voltar {
-    background: #9e5873 !important;
-    border: none;
-    color: white;
-    padding: 10px 17px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-.btn-voltar:hover {
-    background: #7d4058 !important;
-    transform: translateY(-1px);
-}
-
-
-/* BOTÃO LIMPAR */
-
-.btn-limpar {
-    background: #f8d7e2 !important;
-    color: #a3154d !important;
-    border: 1px solid #edb6c9 !important;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-.btn-limpar:hover {
-    background: #f3c1d2 !important;
-}
-
-
-/* BOTÃO CONFIRMAR ALTA */
-
-.btn-salvar {
-    background: #d81b60 !important;
-    color: white;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 15px;
-    font-weight: bold;
-    box-shadow: 0 4px 10px rgba(216, 27, 96, 0.20);
-    transition: 0.2s;
-}
-
-.btn-salvar:hover {
-    background: #ad1457 !important;
-    transform: translateY(-1px);
-    box-shadow: 0 6px 14px rgba(216, 27, 96, 0.25);
-}
-
-
-/* CAMPOS OBRIGATÓRIOS */
-
-.obrigatorio {
-    color: #d81b60 !important;
-}
-
-
-/* LINHAS */
-
-.linha {
-    gap: 18px;
-}
-
-
-/* BOTÕES */
-
-.botoes {
-    border-top: 1px solid #f3d5df;
-    padding-top: 20px;
-}
-
-
-/* BARRA DE ROLAGEM */
-
-::-webkit-scrollbar {
-    width: 9px;
-}
-
-::-webkit-scrollbar-track {
-    background: #fff0f5;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #e6a2b8;
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #d81b60;
-}
-
-
-/* RESPONSIVIDADE */
-
-@media (max-width: 700px) {
+    /* =========================================
+       TELA DE ALTA HOSPITALAR - TEMA ROSA
+    ========================================= */
+
+    body {
+        font-family: Arial, sans-serif;
+        background: #fff5f8;
+        margin: 0;
+        color: #4a3a40;
+    }
+
+
+    /* CONTAINER PRINCIPAL */
 
     .alta-container {
-        width: 94%;
-        padding: 18px;
+        width: 90%;
+        max-width: 1000px;
+        margin: 30px auto;
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 18px;
+        box-shadow: 0 8px 25px rgba(190, 80, 120, 0.15);
+    }
+
+
+    /* CABEÇALHO */
+
+    .cabecalho {
+        border-bottom: 2px solid #f3d5df !important;
     }
 
     .cabecalho h2 {
-        font-size: 22px;
+        color: #c2185b;
+        font-size: 26px;
     }
 
-}
-```
+
+    /* PACIENTE SELECIONADO */
+
+    .paciente-selecionado {
+        background: #fff0f5 !important;
+        border: 1px solid #f2bfd0 !important;
+        color: #ad1457;
+        border-radius: 10px;
+    }
+
+
+    /* SEÇÕES DO FORMULÁRIO */
+
+    .secao {
+        background: #fffafb !important;
+        border: 1px solid #f1d2dc !important;
+        border-radius: 12px;
+        margin-top: 22px;
+        padding: 20px;
+        transition: 0.2s;
+    }
+
+    .secao:hover {
+        border-color: #e8a9bd !important;
+        box-shadow: 0 3px 12px rgba(194, 24, 91, 0.06);
+    }
+
+
+    /* TÍTULOS DAS SEÇÕES */
+
+    .secao h3 {
+        color: #c2185b;
+        border-bottom: 1px solid #f2d2dc !important;
+    }
+
+
+    /* LABELS */
+
+    .campo label,
+    .secao label {
+        color: #6d4654;
+    }
+
+
+    /* CAMPOS */
+
+    .campo input,
+    .campo select,
+    .campo textarea {
+        border: 1px solid #e1b8c6 !important;
+        background: #ffffff;
+        color: #4a3a40;
+        border-radius: 8px;
+        transition: 0.2s;
+    }
+
+
+    /* CAMPO AO CLICAR */
+
+    .campo input:focus,
+    .campo select:focus,
+    .campo textarea:focus {
+        outline: none;
+        border-color: #d81b60 !important;
+        box-shadow: 0 0 0 3px rgba(216, 27, 96, 0.10);
+    }
+
+
+    /* PLACEHOLDER */
+
+    .campo input::placeholder,
+    .campo textarea::placeholder {
+        color: #b58d9a;
+    }
+
+
+    /* SELECT */
+
+    .campo select {
+        cursor: pointer;
+    }
+
+
+    /* CHECKBOXES */
+
+    .status-alta {
+        background: #fff4f7;
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid #f1d2dc;
+    }
+
+    .status-alta input[type="checkbox"] {
+        accent-color: #d81b60;
+        cursor: pointer;
+    }
+
+
+    /* BOTÃO VOLTAR */
+
+    .btn-voltar {
+        background: #9e5873 !important;
+        border: none;
+        color: white;
+        padding: 10px 17px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .btn-voltar:hover {
+        background: #7d4058 !important;
+        transform: translateY(-1px);
+    }
+
+
+    /* BOTÃO LIMPAR */
+
+    .btn-limpar {
+        background: #f8d7e2 !important;
+        color: #a3154d !important;
+        border: 1px solid #edb6c9 !important;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .btn-limpar:hover {
+        background: #f3c1d2 !important;
+    }
+
+
+    /* BOTÃO CONFIRMAR ALTA */
+
+    .btn-salvar {
+        background: #d81b60 !important;
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 15px;
+        font-weight: bold;
+        box-shadow: 0 4px 10px rgba(216, 27, 96, 0.20);
+        transition: 0.2s;
+    }
+
+    .btn-salvar:hover {
+        background: #ad1457 !important;
+        transform: translateY(-1px);
+        box-shadow: 0 6px 14px rgba(216, 27, 96, 0.25);
+    }
+
+
+    /* =========================================
+       BOTÃO BAIXAR PDF
+    ========================================= */
+
+    .btn-pdf {
+        background: #7b1fa2 !important;
+        color: white !important;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 15px;
+        font-weight: bold;
+        box-shadow: 0 4px 10px rgba(123, 31, 162, 0.20);
+        transition: 0.2s;
+    }
+
+    .btn-pdf:hover {
+        background: #6a1b9a !important;
+        transform: translateY(-1px);
+        box-shadow: 0 6px 14px rgba(123, 31, 162, 0.25);
+    }
+
+
+    /* CAMPOS OBRIGATÓRIOS */
+
+    .obrigatorio {
+        color: #d81b60 !important;
+    }
+
+
+    /* LINHAS */
+
+    .linha {
+        gap: 18px;
+    }
+
+
+    /* BOTÕES */
+
+    .botoes {
+        border-top: 1px solid #f3d5df;
+        padding-top: 20px;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+
+    /* BARRA DE ROLAGEM */
+
+    ::-webkit-scrollbar {
+        width: 9px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #fff0f5;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #e6a2b8;
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #d81b60;
+    }
+
+
+    /* RESPONSIVIDADE */
+
+    @media (max-width: 700px) {
+
+        .alta-container {
+            width: 94%;
+            padding: 18px;
+        }
+
+        .cabecalho h2 {
+            font-size: 22px;
+        }
+
+    }
+
+
+    /* =========================================
+       CONFIGURAÇÃO PARA IMPRESSÃO / PDF
+    ========================================= */
+
+    @media print {
+
+        body {
+            background: white !important;
+            color: #000 !important;
+        }
+
+        .alta-container {
+            width: 100% !important;
+            max-width: none !important;
+            margin: 0 !important;
+            padding: 10px !important;
+            box-shadow: none !important;
+            border-radius: 0 !important;
+        }
+
+        /* Esconde os botões na impressão */
+
+        .botoes,
+        .btn-voltar {
+            display: none !important;
+        }
+
+        /* Evita que uma seção seja cortada entre páginas */
+
+        .secao {
+            break-inside: avoid;
+            page-break-inside: avoid;
+            box-shadow: none !important;
+        }
+
+        .secao:hover {
+            box-shadow: none !important;
+        }
+
+        /* Campos */
+
+        input,
+        select,
+        textarea {
+            color: #000 !important;
+            border: 1px solid #999 !important;
+            background: white !important;
+        }
+
+        /* Cabeçalho */
+
+        .cabecalho {
+            border-bottom: 2px solid #333 !important;
+        }
+
+        .cabecalho h2,
+        .secao h3 {
+            color: #000 !important;
+        }
+
+        /* Paciente */
+
+        .paciente-selecionado {
+            background: #f5f5f5 !important;
+            border: 1px solid #999 !important;
+            color: #000 !important;
+        }
+
+        /* Configuração da página */
+
+        @page {
+            size: A4;
+            margin: 15mm;
+        }
+
+    }
 
   </style>
 
@@ -278,6 +381,7 @@ body {
     <h2>🏥 Alta Hospitalar</h2>
 
     <button
+      type="button"
       class="btn-voltar"
       onclick="window.location.href='medico.html'"
     >
@@ -381,7 +485,10 @@ body {
 
         <div class="campo">
 
-          <label>Data de entrada <span class="obrigatorio">*</span></label>
+          <label>
+            Data de entrada
+            <span class="obrigatorio">*</span>
+          </label>
 
           <input
             type="date"
@@ -394,7 +501,10 @@ body {
 
         <div class="campo">
 
-          <label>Data da alta <span class="obrigatorio">*</span></label>
+          <label>
+            Data da alta
+            <span class="obrigatorio">*</span>
+          </label>
 
           <input
             type="date"
@@ -776,7 +886,9 @@ body {
     </div>
 
 
-    <!-- BOTÕES -->
+    <!-- =========================
+         BOTÕES
+    ========================== -->
 
     <div class="botoes">
 
@@ -788,11 +900,21 @@ body {
         Limpar
       </button>
 
+
       <button
         type="submit"
         class="btn-salvar"
       >
         ✅ Confirmar Alta
+      </button>
+
+
+      <button
+        type="button"
+        class="btn-pdf"
+        onclick="imprimirAlta()"
+      >
+        📄 Baixar Alta em PDF
       </button>
 
     </div>
@@ -805,199 +927,240 @@ body {
 
 <script>
 
+  /* =====================================
+     PEGAR PACIENTE DA URL
+  ===================================== */
 
-/* =====================================
-   PEGAR PACIENTE DA URL
-===================================== */
+  const parametros =
+    new URLSearchParams(window.location.search);
 
-const parametros =
-  new URLSearchParams(window.location.search);
 
+  const paciente =
+    parametros.get("paciente");
 
-const paciente =
-  parametros.get("paciente");
 
+  if (paciente) {
 
-if (paciente) {
+    const nomeDecodificado =
+      decodeURIComponent(paciente);
 
-  const nomeDecodificado =
-    decodeURIComponent(paciente);
 
+    document.getElementById("nomePaciente")
+      .textContent = nomeDecodificado;
 
-  document.getElementById("nomePaciente")
-    .textContent = nomeDecodificado;
 
+    document.getElementById("nome")
+      .value = nomeDecodificado;
 
-  document.getElementById("nome")
-    .value = nomeDecodificado;
+  }
 
-}
 
+  /* =====================================
+     DATA ATUAL
+  ===================================== */
 
-/* =====================================
-   DATA ATUAL
-===================================== */
+  const hoje =
+    new Date().toISOString().split("T")[0];
 
-const hoje =
-  new Date().toISOString().split("T")[0];
 
+  document.getElementById("dataAlta")
+    .value = hoje;
 
-document.getElementById("dataAlta")
-  .value = hoje;
 
+  /* =====================================
+     ENVIAR FORMULÁRIO
+  ===================================== */
 
-/* =====================================
-   ENVIAR FORMULÁRIO
-===================================== */
+  document.getElementById("formAlta")
+    .addEventListener("submit", function(event) {
 
-document.getElementById("formAlta")
-  .addEventListener("submit", function(event) {
+      event.preventDefault();
 
-    event.preventDefault();
 
+      const dadosAlta = {
 
-    const dadosAlta = {
+        paciente:
+          document.getElementById("nome").value,
 
-      paciente:
-        document.getElementById("nome").value,
+        nascimento:
+          document.getElementById("nascimento").value,
 
-      nascimento:
-        document.getElementById("nascimento").value,
+        cpf:
+          document.getElementById("cpf").value,
 
-      cpf:
-        document.getElementById("cpf").value,
+        telefone:
+          document.getElementById("telefone").value,
 
-      telefone:
-        document.getElementById("telefone").value,
+        dataEntrada:
+          document.getElementById("dataEntrada").value,
 
-      dataEntrada:
-        document.getElementById("dataEntrada").value,
+        dataAlta:
+          document.getElementById("dataAlta").value,
 
-      dataAlta:
-        document.getElementById("dataAlta").value,
+        setor:
+          document.getElementById("setor").value,
 
-      setor:
-        document.getElementById("setor").value,
+        leito:
+          document.getElementById("leito").value,
 
-      leito:
-        document.getElementById("leito").value,
+        diagnosticoEntrada:
+          document.getElementById("diagnosticoEntrada").value,
 
-      diagnosticoEntrada:
-        document.getElementById("diagnosticoEntrada").value,
+        diagnosticoFinal:
+          document.getElementById("diagnosticoFinal").value,
 
-      diagnosticoFinal:
-        document.getElementById("diagnosticoFinal").value,
+        tratamento:
+          document.getElementById("tratamento").value,
 
-      tratamento:
-        document.getElementById("tratamento").value,
+        estado:
+          document.getElementById("estado").value,
 
-      estado:
-        document.getElementById("estado").value,
+        tipoAlta:
+          document.getElementById("tipoAlta").value,
 
-      tipoAlta:
-        document.getElementById("tipoAlta").value,
+        semFebre:
+          document.getElementById("semFebre").checked,
 
-      semFebre:
-        document.getElementById("semFebre").checked,
+        alimentacao:
+          document.getElementById("alimentacao").checked,
 
-      alimentacao:
-        document.getElementById("alimentacao").checked,
+        clinicamenteEstavel:
+          document.getElementById("medicamenteEstavel").checked,
 
-      clinicamenteEstavel:
-        document.getElementById("medicamenteEstavel").checked,
+        medicamentos:
+          document.getElementById("medicamentos").value,
 
-      medicamentos:
-        document.getElementById("medicamentos").value,
+        cuidadosMedicamentos:
+          document.getElementById("cuidadosMedicamentos").value,
 
-      cuidadosMedicamentos:
-        document.getElementById("cuidadosMedicamentos").value,
+        orientacoes:
+          document.getElementById("orientacoes").value,
 
-      orientacoes:
-        document.getElementById("orientacoes").value,
+        retorno:
+          document.getElementById("retorno").value,
 
-      retorno:
-        document.getElementById("retorno").value,
+        especialidade:
+          document.getElementById("especialidade").value,
 
-      especialidade:
-        document.getElementById("especialidade").value,
+        sinaisAlerta:
+          document.getElementById("sinaisAlerta").value,
 
-      sinaisAlerta:
-        document.getElementById("sinaisAlerta").value,
+        medico:
+          document.getElementById("medico").value,
 
-      medico:
-        document.getElementById("medico").value,
+        crm:
+          document.getElementById("crm").value,
 
-      crm:
-        document.getElementById("crm").value,
+        observacoes:
+          document.getElementById("observacoes").value
 
-      observacoes:
-        document.getElementById("observacoes").value
+      };
 
-    };
 
+      /*
+        Por enquanto os dados são mostrados
+        no console para testar o formulário.
 
-    /*
-      Por enquanto os dados são mostrados
-      no console para testar o formulário.
+        Depois podemos conectar essa parte
+        ao seu backend usando fetch().
+      */
 
-      Depois podemos conectar essa parte
-      ao seu backend usando fetch().
-    */
+      console.log("Dados da alta:", dadosAlta);
 
-    console.log("Dados da alta:", dadosAlta);
 
+      alert(
+        "✅ Alta hospitalar registrada com sucesso!"
+      );
 
-    alert(
-      "✅ Alta hospitalar registrada com sucesso!"
-    );
 
+      /*
+        Depois de salvar, volta para o
+        painel médico.
+      */
 
-    /*
-      Depois de salvar, volta para o
-      painel médico.
-    */
+      window.location.href = "medico.html";
 
-    window.location.href = "medico.html";
+    });
 
-  });
 
+  /* =====================================
+     LIMPAR FORMULÁRIO
+  ===================================== */
 
-/* =====================================
-   LIMPAR FORMULÁRIO
-===================================== */
+  function limparFormulario() {
 
-function limparFormulario() {
+    const confirmar =
+      confirm(
+        "Tem certeza que deseja limpar o formulário?"
+      );
 
-  const confirmar =
-    confirm(
-      "Tem certeza que deseja limpar o formulário?"
-    );
 
+    if (confirmar) {
 
-  if (confirmar) {
+      document.getElementById("formAlta").reset();
 
-    document.getElementById("formAlta").reset();
 
+      /*
+        Mantém o nome do paciente
+        após limpar.
+      */
 
-    /*
-      Mantém o nome do paciente
-      após limpar.
-    */
+      if (paciente) {
 
-    if (paciente) {
+        document.getElementById("nome").value =
+          decodeURIComponent(paciente);
 
-      document.getElementById("nome").value =
-        decodeURIComponent(paciente);
+      }
+
+      /*
+        Mantém a data da alta preenchida
+        com a data atual.
+      */
+
+      document.getElementById("dataAlta").value = hoje;
 
     }
 
   }
 
-}
+
+  /* =====================================
+     BAIXAR / IMPRIMIR ALTA EM PDF
+  ===================================== */
+
+  function imprimirAlta() {
+
+    /*
+      Verifica se os campos obrigatórios
+      estão preenchidos antes de imprimir.
+    */
+
+    const formulario =
+      document.getElementById("formAlta");
+
+
+    if (!formulario.checkValidity()) {
+
+      formulario.reportValidity();
+
+      return;
+
+    }
+
+
+    /*
+      Abre a janela de impressão do navegador.
+
+      O usuário poderá escolher:
+      "Salvar como PDF"
+    */
+
+    window.print();
+
+  }
 
 </script>
 
 </body>
 
 </html>
-```

@@ -14,28 +14,36 @@
 
   <main class="container">
 
-    <img
-      src="logo.png"
-      alt="Logo do Hospital"
-      class="logo"
-    >
+    <div class="logo-area">
+      <img
+        src="logo.png"
+        alt="Logo do Hospital"
+        class="logo"
+      >
+    </div>
 
-    <h2 style="text-align: center;">🏥 Sistema Hospitalar</h2>
+    <h2>🏥 Sistema Hospitalar</h2>
+
+    <p class="subtitle">Acesso ao sistema hospitalar</p>
 
     <form class="login-form" onsubmit="login(); return false;">
+
+      <label for="usuario">Usuário</label>
 
       <input
         id="usuario"
         type="text"
-        placeholder="Usuário"
+        placeholder="Digite seu usuário"
         autocomplete="username"
         required
       >
 
+      <label for="senha">Senha</label>
+
       <input
         id="senha"
         type="password"
-        placeholder="Senha"
+        placeholder="Digite sua senha"
         autocomplete="current-password"
         required
       >

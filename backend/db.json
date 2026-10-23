@@ -6,6 +6,13 @@
       "tipo": "triagem"
     },
     {
+  "medicacoes": [
+    {
+      "usuario": "medicacoes",
+      "senha": "123",
+      "tipo": "medicacoes"
+    },
+    {
       "usuario": "medico",
       "senha": "123",
       "tipo": "medico"

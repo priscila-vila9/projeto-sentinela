@@ -14,6 +14,11 @@
       "usuario": "atendimento",
       "senha": "123",
       "tipo": "atendimento"
+    },
+    {
+      "usuario": "admin",
+      "senha": "123",
+      "tipo": "admin"
     }
   ],
   "pacientes": [

@@ -1,82 +1,249 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Cadastro Simples</title>
+
+    <title>Admin - Cadastro de Usuários</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            margin: 0;
+            padding: 30px 15px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 25px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .voltar {
+            text-decoration: none;
+            color: #3498db;
+            margin-bottom: 12px;
+            font-size: 14px;
+            display: inline-block;
+        }
+
+        h2, h3 {
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 12px;
+            border-radius: 5px;
+            font-size: 15px;
+        }
+
+        input, select {
+            border: 1px solid #ccc;
+        }
+
+        button {
+            border: none;
+            background: #3498db;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #2980b9;
+        }
+
+        .usuario {
+            padding: 12px;
+            margin-bottom: 8px;
+            background: #f4f6f9;
+            border-radius: 5px;
+            overflow-wrap: anywhere;
+        }
+
+        .mensagem {
+            margin-top: 12px;
+            font-size: 14px;
+        }
+    </style>
 </head>
+
 <body>
+
     <div class="container">
-    <a href="index.html" style="text-decoration: none;
-    color: #3498db; margin-bottom: 12px;
-    font-size:14px; display: inline-block;">Voltar para a Login</a>
-    <h2>Cadastrar Usuários</h2>
-<form id="FormUsuario">
-    <input type="text" id="usuario" placeholder="Nome de Usuario(Login)" required>
-    <input type="password" id="senha" placeholder="Senha" required>
 
-<select id="tipo" required>
-        <option value="">Selecione o Setor</option>
-        <option value="atendimento">Atendimento</option>
-        <option value="triagem">Triagem</option>
-        <option value="medico">Médico</option>
-    </select>
+        <a href="index.html" class="voltar">
+            Voltar para o login
+        </a>
 
-    <button type="submit">Cadastrar Usuario</button>
-</form>
+        <h2>Cadastrar Usuários</h2>
 
-<hr style="margin: 25px 0; border: none; border-top: 1px solid #ccc;">
+        <form id="FormUsuario">
 
-<h3> Usuários Cadastrados</h3>
-<div id="listaUsuarios"></div>
+            <input
+                type="text"
+                id="usuario"
+                placeholder="Nome de usuário (login)"
+                autocomplete="off"
+                required
+            >
+
+            <input
+                type="password"
+                id="senha"
+                placeholder="Senha"
+                autocomplete="new-password"
+                required
+            >
+
+            <select id="tipo" required>
+                <option value="">Selecione o setor</option>
+                <option value="admin">Administrador</option>
+                <option value="atendimento">Atendimento</option>
+                <option value="triagem">Triagem</option>
+                <option value="medico">Médico</option>
+                <option value="medicacoes">Medicações</option>
+            </select>
+
+            <button type="submit" id="btnCadastrar">
+                Cadastrar Usuário
+            </button>
+
+        </form>
+
+        <p id="mensagem" class="mensagem" role="status"></p>
+
+        <hr style="margin: 25px 0; border: none; border-top: 1px solid #ccc;">
+
+        <h3>Usuários Cadastrados</h3>
+
+        <div id="listaUsuarios">
+            Carregando usuários...
+        </div>
+
     </div>
 
     <script>
-// 1. Cadastrar usuario ao enviar o formulário
-document.getElementById('FormUsuario').addEventListener('submit',
- function(event) {
-    event.preventDefault();
+        const formulario = document.getElementById("FormUsuario");
+        const lista = document.getElementById("listaUsuarios");
+        const mensagem = document.getElementById("mensagem");
+        const botao = document.getElementById("btnCadastrar");
 
-    const usuario = document.getElementById('usuario').value;
-    const senha = document.getElementById('senha').value;
-    const tipo = document.getElementById('tipo').value;
+        // CADASTRAR USUÁRIO
+        formulario.addEventListener("submit", async function(event) {
+            event.preventDefault();
 
-    fetch("/usuarios", {
-        method: "POST",
-        headers: {"Content-Type": "application/json" },
-        body: JSON.stringify({ usuario, senha, tipo })
-    })
-    .then(res=> res.json())
-    .then(dados => {
-       if(dados.erro) {
-        alert("erro: " + dados.erro);
-       } else {
-        alert("Usuário cadastrado com sucesso!");
-        document.getElementById('FormUsuario').reset();
-        CarregarUsuarios();
-       }
-       
-    });
+            const usuario = document
+                .getElementById("usuario")
+                .value
+                .trim();
 
-});
-//carregar e listar os usuarios cadastrados
-function CarregarUsuarios() {
-    fetch("/usuarios")
-    .then(res => res.json())
-    .then(usuarios => {
-        const lista = document.getElementById('listaUsuarios');
-        lista.innerHTML = '';
-        usuarios.forEach(u => {
-            const div = document.createElement('div');
-            div.textContent = `Usuário: ${u.usuario}, Tipo: ${u.tipo}`;
-            lista.appendChild(div);
+            const senha = document.getElementById("senha").value;
+
+            const tipo = document.getElementById("tipo").value;
+
+            botao.disabled = true;
+            mensagem.textContent = "Cadastrando usuário...";
+
+            try {
+                const resposta = await fetch("/usuarios", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        usuario,
+                        senha,
+                        tipo
+                    })
+                });
+
+                const dados = await resposta.json();
+
+                if (!resposta.ok) {
+                    throw new Error(
+                        dados.erro || "Não foi possível cadastrar."
+                    );
+                }
+
+                mensagem.textContent =
+                    "Usuário cadastrado com sucesso!";
+
+                formulario.reset();
+
+                await CarregarUsuarios();
+
+            } catch (erro) {
+                mensagem.textContent = erro.message;
+
+            } finally {
+                botao.disabled = false;
+            }
         });
-    });
-} 
-// Chama a função para carregar os usuários ao abrir a página
-    carregarUsuarios(); 
+
+        // LISTAR USUÁRIOS
+        async function CarregarUsuarios() {
+            lista.textContent = "Carregando usuários...";
+
+            try {
+                const resposta = await fetch("/usuarios");
+
+                if (!resposta.ok) {
+                    throw new Error(
+                        "Erro ao consultar os usuários."
+                    );
+                }
+
+                const usuarios = await resposta.json();
+
+                lista.replaceChildren();
+
+                if (!Array.isArray(usuarios) || usuarios.length === 0) {
+                    lista.textContent = "Nenhum usuário cadastrado.";
+                    return;
+                }
+
+                usuarios.forEach(function(u) {
+                    const div = document.createElement("div");
+
+                    div.className = "usuario";
+
+                    // textContent evita interpretar os dados como HTML
+                    div.textContent =
+                        "Usuário: " + u.usuario +
+                        " | Setor: " + u.tipo;
+
+                    lista.appendChild(div);
+                });
+
+            } catch (erro) {
+                lista.textContent =
+                    "Não foi possível carregar os usuários. " +
+                    "Verifique se o servidor está funcionando.";
+
+                console.error(erro);
+            }
+        }
+
+        // CARREGAR AO ABRIR A PÁGINA
+        CarregarUsuarios();
     </script>
- 
-    
+
 </body>
 </html>

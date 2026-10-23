@@ -4,10 +4,166 @@
 <head> 
   <meta charset="UTF-8"> 
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
- 
   <title>Sistema Hospitalar - Login</title> 
  
-  <link rel="stylesheet" href="style.css"> 
+  <style>
+    :root {
+      --rosa-escuro: #d81b60;
+      --rosa-medio: #ec407a;
+      --rosa-claro: #f48fb1;
+      --rosa-suave: #fce4ec;
+      --fundo: #fff0f5;
+      --texto: #4a2c3d;
+      --sombra: rgba(216, 27, 96, 0.15);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #fff0f5 0%, #fce4ec 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      color: var(--texto);
+    }
+
+    /* Container centralizado */
+    .container {
+      background: #ffffff;
+      padding: 35px 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px var(--sombra);
+      width: 100%;
+      max-width: 400px;
+      border: 1px solid #f8bbd0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    /* Logo centralizada com estilo circular */
+    .logo {
+      width: 90px;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid var(--rosa-medio);
+      margin-bottom: 15px;
+      background-color: var(--rosa-suave);
+      padding: 4px;
+    }
+
+    h2 {
+      color: var(--rosa-escuro);
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 25px;
+      letter-spacing: 0.5px;
+    }
+
+    /* Formulário ocupar 100% da largura útil */
+    .login-form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    /* Inputs estilizados */
+    .input-group {
+      position: relative;
+      width: 100%;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 13px 16px;
+      border: 2px solid #f8bbd0;
+      border-radius: 12px;
+      outline: none;
+      font-size: 14px;
+      background-color: #fffafc;
+      color: var(--texto);
+      transition: all 0.3s ease;
+    }
+
+    input[type="text"]:focus,
+    input[type="password"]:focus {
+      border-color: var(--rosa-medio);
+      background-color: #ffffff;
+      box-shadow: 0 0 0 4px rgba(236, 64, 122, 0.15);
+    }
+
+    /* Botão Principal */
+    button[type="submit"] {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, var(--rosa-medio) 0%, var(--rosa-escuro) 100%);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(216, 27, 96, 0.3);
+      transition: transform 0.2s, box-shadow 0.2s;
+      margin-top: 5px;
+    }
+
+    button[type="submit"]:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(216, 27, 96, 0.4);
+    }
+
+    button[type="submit"]:active {
+      transform: translateY(0);
+    }
+
+    /* Área de Cadastro / Links adicionais */
+    .cadastro-box {
+      margin-top: 25px;
+      padding-top: 18px;
+      border-top: 1px dashed #f8bbd0;
+      width: 100%;
+      font-size: 13px;
+      color: #a0607e;
+    }
+
+    .cadastro-box a {
+      color: var(--rosa-escuro);
+      font-weight: bold;
+      text-decoration: none;
+      margin-left: 5px;
+      transition: color 0.2s;
+    }
+
+    .cadastro-box a:hover {
+      text-decoration: underline;
+      color: var(--rosa-medio);
+    }
+
+    /* Botão simples para revelar/ocultar senha */
+    .toggle-senha {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      color: var(--rosa-medio);
+    }
+  </style>
 </head> 
  
 <body> 
@@ -20,31 +176,42 @@
       class="logo" 
     > 
  
-    <h2 style="text-align: center;">🏥 Sistema Hospitalar</h2> 
+    <h2>🏥 Sistema Hospitalar</h2> 
  
     <form class="login-form" onsubmit="login(); return false;"> 
  
-      <input 
-        id="usuario" 
-        type="text" 
-        placeholder="Usuário" 
-        autocomplete="username" 
-        required 
-      > 
- 
-      <input 
-        id="senha" 
-        type="password" 
-        placeholder="Senha" 
-        autocomplete="current-password" 
-        required 
-      > 
- 
+      <div class="input-group">
+        <input 
+          id="usuario" 
+          type="text" 
+          placeholder="Usuário" 
+          autocomplete="username" 
+          required 
+        > 
+      </div>
+
+      <div class="input-group">
+        <input 
+          id="senha" 
+          type="password" 
+          placeholder="Senha" 
+          autocomplete="current-password" 
+          required 
+        > 
+        <button type="button" class="toggle-senha" onclick="toggleSenhaVisivel()" title="Mostrar/Ocultar Senha">👁️</button>
+      </div>
+
       <button type="submit"> 
         Entrar 
       </button> 
  
     </form> 
+
+    <!-- Seção de Cadastro / Acesso -->
+    <div class="cadastro-box">
+      <span>Não tem uma conta?</span>
+      <a href="cadastro.html">Cadastrar-se</a>
+    </div>
  
   </main> 
  
@@ -94,6 +261,16 @@
       }); 
  
     } 
+
+    // Função utilitária para mostrar/ocultar senha
+    function toggleSenhaVisivel() {
+      const campoSenha = document.getElementById("senha");
+      if (campoSenha.type === "password") {
+        campoSenha.type = "text";
+      } else {
+        campoSenha.type = "password";
+      }
+    }
  
   </script> 
  

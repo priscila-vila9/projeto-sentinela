@@ -242,18 +242,25 @@
  
       .then(data => { 
  
-        if (data.tipo === "triagem") { 
-          location.href = "triagem.html"; 
-        } 
- 
-        if (data.tipo === "medico") { 
-          location.href = "medico.html"; 
-        } 
- 
-        if (data.tipo === "atendimento") { 
-          location.href = "atendimento.html"; 
-        } 
- 
+
+if (data.tipo === "triagem") {
+  location.href = "triagem.html";
+
+} else if (data.tipo === "medico") {
+  location.href = "medico.html";
+
+} else if (data.tipo === "atendimento") {
+  location.href = "atendimento.html";
+
+} else if (data.tipo === "medicacoes") {
+  location.href = "medicacoes.html";
+
+} else if (data.tipo === "admin") {
+  location.href = "admin.html";
+
+} else {
+  alert("Tipo de usuário não reconhecido!");
+}
       }) 
  
       .catch(err => { 

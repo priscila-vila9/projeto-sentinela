@@ -12,6 +12,7 @@ app.use(express.static(path.join(__dirname, "../frontend")));
 
 const DB_FILE = path.join(__dirname, "db.json");
 
+// LER BANCO DE DADOS
 function readDB() {
   if (!fs.existsSync(DB_FILE)) {
     return {
@@ -23,12 +24,21 @@ function readDB() {
       tv_historico: []
     };
   }
-  const db = JSON.parse(fs.readFileSync(DB_FILE));
-  if (!db.tv_chamada) db.tv_chamada = null;
-  if (!db.tv_historico) db.tv_historico = [];
+
+  const db = JSON.parse(fs.readFileSync(DB_FILE, "utf8"));
+
+  // Garantir que as listas existam sem apagar os dados existentes
+  if (!Array.isArray(db.usuarios)) db.usuarios = [];
+  if (!Array.isArray(db.pacientes)) db.pacientes = [];
+  if (!Array.isArray(db.triagens)) db.triagens = [];
+  if (!Array.isArray(db.consultas)) db.consultas = [];
+  if (!Array.isArray(db.tv_historico)) db.tv_historico = [];
+  if (db.tv_chamada === undefined) db.tv_chamada = null;
+
   return db;
 }
 
+// SALVAR BANCO DE DADOS
 function writeDB(data) {
   fs.writeFileSync(DB_FILE, JSON.stringify(data, null, 2));
 }
@@ -43,13 +53,15 @@ app.post("/login", (req, res) => {
   );
 
   if (!user) {
-    return res.status(401).json({ erro: "Login inválido" });
+    return res.status(401).json({
+      erro: "Login inválido"
+    });
   }
 
   res.json(user);
 });
 
-// ATENDIMENTO - cadastrar paciente
+// ATENDIMENTO - CADASTRAR PACIENTE
 app.post("/atendimento", (req, res) => {
   const db = readDB();
 
@@ -68,7 +80,7 @@ app.post("/atendimento", (req, res) => {
   res.json(paciente);
 });
 
-// LISTAR PACIENTES (triagem busca quem foi cadastrado no atendimento)
+// LISTAR PACIENTES
 app.get("/pacientes", (req, res) => {
   const db = readDB();
   res.json(db.pacientes);
@@ -112,10 +124,7 @@ app.get("/triagens", (req, res) => {
   res.json(db.triagens);
 });
 
-// ============ MÍDIA INDOOR - TV ============
-
-// Função criada para enviar a chamada do paciente para a tela da TV.
-// Serve para triagem chamar o paciente no guichê e para o médico chamar no consultório.
+// TV - CHAMAR PACIENTE
 app.post("/tv/chamar", (req, res) => {
   const db = readDB();
 
@@ -124,28 +133,34 @@ app.post("/tv/chamar", (req, res) => {
     localTipo: req.body.localTipo,
     localNumero: req.body.localNumero,
     paciente: req.body.paciente,
-    hora: new Date().toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" })
+    hora: new Date().toLocaleTimeString("pt-BR", {
+      hour: "2-digit",
+      minute: "2-digit"
+    })
   };
 
   db.tv_chamada = chamada;
   db.tv_historico.unshift(chamada);
-  if (db.tv_historico.length > 5) db.tv_historico.pop();
+
+  if (db.tv_historico.length > 5) {
+    db.tv_historico.pop();
+  }
 
   writeDB(db);
   res.json(chamada);
 });
 
-// Função criada para consultar a chamada atual e o histórico que será exibido na TV.
-// Essa rota é usada para atualizar a tela automaticamente a cada poucos segundos.
+// TV - CONSULTAR CHAMADA ATUAL E HISTÓRICO
 app.get("/tv/chamada", (req, res) => {
   const db = readDB();
+
   res.json({
     chamada: db.tv_chamada,
     historico: db.tv_historico
   });
 });
 
-// LISTA DE MEDICAÇÕES
+// LISTA DE MEDICAÇÕES DISPONÍVEIS
 app.get("/lista-medicacoes", (req, res) => {
   res.json([
     "Dipirona",
@@ -161,7 +176,7 @@ app.get("/lista-medicacoes", (req, res) => {
   ]);
 });
 
-// CONSULTA
+// CONSULTA - SALVAR DIAGNÓSTICO E MEDICAÇÃO
 app.post("/consulta", (req, res) => {
   const db = readDB();
 
@@ -169,8 +184,8 @@ app.post("/consulta", (req, res) => {
     id: Date.now(),
     paciente: req.body.paciente,
     diagnostico: req.body.diagnostico,
-    medicacao: req.body.medicacao,
-    obs: req.body.obs,
+    medicacao: req.body.medicacao || "",
+    obs: req.body.obs || "",
     createdAt: new Date()
   };
 
@@ -180,15 +195,30 @@ app.post("/consulta", (req, res) => {
   res.json(consulta);
 });
 
-// MEDICAÇÕES
+// MEDICAÇÕES PRESCRITAS
 app.get("/medicacoes", (req, res) => {
-  const db = readDB();
-  res.json(db.consultas);
+  try {
+    const db = readDB();
+
+    const medicacoes = db.consultas.filter(consulta =>
+      typeof consulta.medicacao === "string"
+        ? consulta.medicacao.trim() !== ""
+        : Boolean(consulta.medicacao)
+    );
+
+    res.json(medicacoes);
+  } catch (erro) {
+    console.error("Erro ao carregar medicações:", erro);
+
+    res.status(500).json({
+      erro: "Não foi possível carregar as medicações."
+    });
+  }
 });
 
-// START
-const PORT = process.env.PORT
-    || 3000;
+// INICIAR SERVIDOR
+const PORT = process.env.PORT || 3000;
+
 app.listen(PORT, () => {
-  console.log(`Porta ${PORT}`);
+  console.log(`Servidor rodando na porta ${PORT}`);
 });

@@ -45,6 +45,31 @@
             text-decoration: underline;
         }
 
+        /* BOTÃO DO ALMOXARIFADO */
+        .btn-almoxarifado {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 25px;
+            border: none;
+            border-radius: 9px;
+            background: linear-gradient(135deg, #ec407a, #d81b60);
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 10px rgba(216, 27, 96, 0.2);
+        }
+
+        .btn-almoxarifado:hover {
+            background: linear-gradient(135deg, #d81b60, #ad1457);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(216, 27, 96, 0.25);
+        }
+
         h2, h3 {
             color: #ad1457;
         }
@@ -170,6 +195,13 @@
             Voltar para o login
         </a>
 
+        <!-- ACESSO AO ALMOXARIFADO -->
+        <a href="almoxarifado.html" class="btn-almoxarifado">
+            📦 Acessar Almoxarifado
+            <br>
+            <small>Atalho: CTRL + ALT + A</small>
+        </a>
+
         <h2>Cadastrar Usuários</h2>
 
         <form id="FormUsuario">
@@ -222,6 +254,20 @@
         const lista = document.getElementById("listaUsuarios");
         const mensagem = document.getElementById("mensagem");
         const botao = document.getElementById("btnCadastrar");
+
+        // ATALHO CTRL + ALT + A
+        document.addEventListener("keydown", function(event) {
+
+            if (
+                event.ctrlKey &&
+                event.altKey &&
+                event.key.toLowerCase() === "a"
+            ) {
+                event.preventDefault();
+                window.location.href = "almoxarifado.html";
+            }
+
+        });
 
         // CADASTRAR USUÁRIO
         formulario.addEventListener("submit", async function(event) {
@@ -302,7 +348,6 @@
 
                     div.className = "usuario";
 
-                    // textContent evita interpretar os dados como HTML
                     div.textContent =
                         "Usuário: " + u.usuario +
                         " | Setor: " + u.tipo;

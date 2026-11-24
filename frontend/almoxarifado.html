@@ -4,7 +4,373 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Almoxarifado</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #fff0f6, #fce4ec, #f8bbd0);
+            margin: 0;
+            min-height: 100vh;
+            color: #7b2348;
+        }
+
+        /* BARRA SUPERIOR */
+        .navbar {
+            background: #ffffff;
+            padding: 18px 35px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            border-bottom: 1px solid #f8bbd0;
+            box-shadow: 0 4px 15px rgba(216, 27, 96, 0.10);
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #ec407a, #d81b60);
+            border-radius: 12px;
+        }
+
+        .nav-brand h1 {
+            color: #ad1457;
+            font-size: 21px;
+            margin: 0 0 5px;
+        }
+
+        .nav-brand span {
+            color: #9c5270;
+            font-size: 13px;
+        }
+
+        .nav-user {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-pill {
+            background: #fff0f6;
+            color: #c2185b;
+            padding: 10px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        .btn-nav {
+            background: linear-gradient(135deg, #ec407a, #d81b60);
+            color: white;
+            text-decoration: none;
+            padding: 11px 20px;
+            border-radius: 9px;
+            font-size: 14px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-nav:hover {
+            background: #ad1457;
+        }
+
+        /* CONTEÚDO */
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px 35px;
+        }
+
+        /* ALERTA */
+        .alerta-estoque {
+            background: #fff0f6;
+            border: 1px solid #f48fb1;
+            border-left: 5px solid #e91e63;
+            color: #ad1457;
+            padding: 16px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* ESTATÍSTICAS */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            background: #ffffff;
+            border: 1px solid #f8bbd0;
+            border-radius: 14px;
+            padding: 22px;
+            box-shadow: 0 5px 15px rgba(216, 27, 96, 0.08);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .stat-icon {
+            width: 12px;
+            height: 42px;
+            border-radius: 10px;
+            flex-shrink: 0;
+        }
+
+        .stat-icon.purple {
+            background: #ba68c8;
+        }
+
+        .stat-icon.orange {
+            background: #f48fb1;
+        }
+
+        .stat-icon.red {
+            background: #e91e63;
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ad1457;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: #9c5270;
+            margin-top: 5px;
+        }
+
+        /* ORGANIZAÇÃO PRINCIPAL */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 22px;
+        }
+
+        /* CARTÕES */
+        .card {
+            background: #ffffff;
+            border: 1px solid #f8bbd0;
+            border-radius: 16px;
+            box-shadow: 0 6px 20px rgba(216, 27, 96, 0.10);
+            overflow: hidden;
+        }
+
+        .card-header {
+            background: #fff0f6;
+            padding: 18px 22px;
+            border-bottom: 1px solid #f8bbd0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .card-header h2 {
+            color: #ad1457;
+            font-size: 19px;
+            margin: 0;
+        }
+
+        .card-body {
+            padding: 24px;
+        }
+
+        /* ABAS */
+        .entrada-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 22px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            min-width: 150px;
+            padding: 13px;
+            border: 1px solid #f3b6ce;
+            border-radius: 9px;
+            background: #fffafd;
+            color: #c2185b;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .tab-btn:hover {
+            background: #fce4ec;
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, #ec407a, #d81b60);
+            color: white;
+            border-color: #d81b60;
+        }
+
+        /* FORMULÁRIOS */
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            color: #ad1457;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .form-group small {
+            color: #b76e89;
+            font-weight: normal;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #f3b6ce;
+            border-radius: 9px;
+            background: #fffafd;
+            color: #5d243b;
+            font-size: 14px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: #e91e63;
+            box-shadow: 0 0 0 3px rgba(233, 30, 99, 0.12);
+        }
+
+        .form-control::placeholder {
+            color: #b88a9c;
+        }
+
+        /* BOTÕES */
+        .btn-full {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 9px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-purple {
+            background: linear-gradient(135deg, #ec407a, #d81b60);
+            color: white;
+            box-shadow: 0 4px 10px rgba(216, 27, 96, 0.20);
+        }
+
+        .btn-purple:hover {
+            background: linear-gradient(135deg, #d81b60, #ad1457);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #fce4ec;
+            color: #c2185b;
+            border: 1px solid #f3b6ce;
+        }
+
+        .btn-sm {
+            padding: 9px 13px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        /* HISTÓRICO */
+        .empty-state {
+            text-align: center;
+            padding: 25px;
+            color: #b76e89;
+        }
+
+        .empty-icon {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 850px) {
+            .stats-bar {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 550px) {
+            .navbar {
+                padding: 18px;
+            }
+
+            .nav-brand h1 {
+                font-size: 17px;
+            }
+
+            .nav-brand span {
+                font-size: 11px;
+            }
+
+            .container {
+                margin: 20px auto;
+                padding: 0 12px 25px;
+            }
+
+            .stats-bar {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+
+            .stat-card {
+                padding: 14px 10px;
+                gap: 8px;
+            }
+
+            .stat-value {
+                font-size: 23px;
+            }
+
+            .stat-label {
+                font-size: 11px;
+            }
+
+            .card-body {
+                padding: 17px;
+            }
+
+            .card-header {
+                padding: 15px;
+            }
+
+            .card-header h2 {
+                font-size: 16px;
+            }
+
+            .nav-user {
+                width: 100%;
+                justify-content: space-between;
+            }
+        }
+    </style>
 </head>
+
 <body>
     
     <header class="navbar">

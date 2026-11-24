@@ -1,27 +1,31 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Almoxarifado</title>
+
+    <title>Hospital Pro - Almoxarifado</title>
 
     <style>
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
             font-family: Arial, sans-serif;
             background: linear-gradient(135deg, #fff0f6, #fce4ec, #f8bbd0);
-            margin: 0;
             min-height: 100vh;
             color: #7b2348;
         }
 
-        /* BARRA SUPERIOR */
+        /* CABEÇALHO */
+
         .navbar {
             background: #ffffff;
-            padding: 18px 35px;
+            padding: 16px 35px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -38,16 +42,17 @@
         }
 
         .logo-icon {
-            width: 48px;
-            height: 48px;
+            width: 45px;
+            height: 45px;
             background: linear-gradient(135deg, #ec407a, #d81b60);
             border-radius: 12px;
+            flex-shrink: 0;
         }
 
         .nav-brand h1 {
             color: #ad1457;
             font-size: 21px;
-            margin: 0 0 5px;
+            margin-bottom: 5px;
         }
 
         .nav-brand span {
@@ -85,14 +90,17 @@
             background: #ad1457;
         }
 
-        /* CONTEÚDO */
+        /* CONTEÚDO PRINCIPAL */
+
         .container {
-            max-width: 1200px;
-            margin: 30px auto;
-            padding: 0 20px 35px;
+            max-width: 1250px;
+            width: 95%;
+            margin: 35px auto;
+            padding-bottom: 40px;
         }
 
-        /* ALERTA */
+        /* ALERTA DE ESTOQUE */
+
         .alerta-estoque {
             background: #fff0f6;
             border: 1px solid #f48fb1;
@@ -100,15 +108,16 @@
             color: #ad1457;
             padding: 16px;
             border-radius: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
-        /* ESTATÍSTICAS */
+        /* INDICADORES */
+
         .stats-bar {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 18px;
-            margin-bottom: 25px;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
         }
 
         .stat-card {
@@ -119,12 +128,13 @@
             box-shadow: 0 5px 15px rgba(216, 27, 96, 0.08);
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 16px;
+            min-width: 0;
         }
 
         .stat-icon {
             width: 12px;
-            height: 42px;
+            height: 48px;
             border-radius: 10px;
             flex-shrink: 0;
         }
@@ -150,28 +160,32 @@
         .stat-label {
             font-size: 13px;
             color: #9c5270;
-            margin-top: 5px;
+            margin-top: 6px;
         }
 
-        /* ORGANIZAÇÃO PRINCIPAL */
+        /* ÁREA PRINCIPAL */
+
         .main-grid {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 22px;
+            grid-template-columns: minmax(0, 1.5fr) minmax(300px, 1fr);
+            gap: 25px;
+            align-items: start;
         }
 
         /* CARTÕES */
+
         .card {
             background: #ffffff;
             border: 1px solid #f8bbd0;
             border-radius: 16px;
             box-shadow: 0 6px 20px rgba(216, 27, 96, 0.10);
             overflow: hidden;
+            min-width: 0;
         }
 
         .card-header {
             background: #fff0f6;
-            padding: 18px 22px;
+            padding: 20px 24px;
             border-bottom: 1px solid #f8bbd0;
             display: flex;
             align-items: center;
@@ -182,29 +196,30 @@
         .card-header h2 {
             color: #ad1457;
             font-size: 19px;
-            margin: 0;
         }
 
         .card-body {
-            padding: 24px;
+            padding: 25px;
         }
 
         /* ABAS */
+
         .entrada-tabs {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 22px;
+            gap: 12px;
+            margin-bottom: 25px;
         }
 
         .tab-btn {
             flex: 1;
             min-width: 150px;
-            padding: 13px;
+            padding: 14px;
             border: 1px solid #f3b6ce;
             border-radius: 9px;
             background: #fffafd;
             color: #c2185b;
+            font-size: 14px;
             font-weight: bold;
             cursor: pointer;
             transition: 0.3s;
@@ -221,11 +236,12 @@
         }
 
         /* FORMULÁRIOS */
+
         .form-group {
             display: flex;
             flex-direction: column;
-            gap: 8px;
-            margin-bottom: 18px;
+            gap: 9px;
+            margin-bottom: 20px;
         }
 
         .form-group label {
@@ -241,7 +257,7 @@
 
         .form-control {
             width: 100%;
-            padding: 13px;
+            padding: 14px;
             border: 1px solid #f3b6ce;
             border-radius: 9px;
             background: #fffafd;
@@ -261,9 +277,10 @@
         }
 
         /* BOTÕES */
+
         .btn-full {
             width: 100%;
-            padding: 14px;
+            padding: 15px;
             border: none;
             border-radius: 9px;
             font-size: 15px;
@@ -290,32 +307,46 @@
         }
 
         .btn-sm {
-            padding: 9px 13px;
+            padding: 10px 14px;
             border-radius: 8px;
             cursor: pointer;
             font-size: 14px;
         }
 
         /* HISTÓRICO */
+
         .empty-state {
             text-align: center;
-            padding: 25px;
+            padding: 45px 20px;
             color: #b76e89;
         }
 
         .empty-icon {
-            font-size: 30px;
-            margin-bottom: 10px;
+            font-size: 35px;
+            margin-bottom: 15px;
+        }
+
+        .empty-state p {
+            font-size: 14px;
+            line-height: 1.6;
         }
 
         /* RESPONSIVIDADE */
-        @media (max-width: 850px) {
+
+        @media (max-width: 950px) {
+
             .stats-bar {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(2, minmax(0, 1fr));
             }
+
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+
         }
 
         @media (max-width: 550px) {
+
             .navbar {
                 padding: 18px;
             }
@@ -328,18 +359,22 @@
                 font-size: 11px;
             }
 
+            .nav-user {
+                width: 100%;
+                justify-content: space-between;
+            }
+
             .container {
-                margin: 20px auto;
-                padding: 0 12px 25px;
+                width: 94%;
+                margin: 22px auto;
             }
 
             .stats-bar {
-                grid-template-columns: 1fr 1fr;
                 gap: 10px;
             }
 
             .stat-card {
-                padding: 14px 10px;
+                padding: 15px 10px;
                 gap: 8px;
             }
 
@@ -352,170 +387,337 @@
             }
 
             .card-body {
-                padding: 17px;
+                padding: 18px;
             }
 
             .card-header {
-                padding: 15px;
+                padding: 17px;
             }
 
             .card-header h2 {
                 font-size: 16px;
             }
 
-            .nav-user {
-                width: 100%;
-                justify-content: space-between;
+            .tab-btn {
+                min-width: 100%;
             }
+
         }
+
     </style>
 </head>
 
 <body>
-    
+
+    <!-- CABEÇALHO -->
+
     <header class="navbar">
+
         <div class="nav-brand">
             <div class="logo-icon"></div>
+
             <div>
                 <h1>Hospital Pro - Almoxarifado</h1>
                 <span>Gestão de entrada e Controle de Estoque</span>
             </div>
         </div>
+
         <div class="nav-user">
             <span class="user-pill" id="nomeUsuario">Almoxarifado</span>
             <a href="index.html" class="btn-nav">Sair</a>
         </div>
+
     </header>
+
 
     <div class="container">
 
-       <div class="alerta-estoque" id="alertEstoque" style="display:none;">
-        <strong>Atenção!</strong> <span id="alertaTexto"></span>
-       </div>
+        <!-- ALERTA -->
 
-       <div class="stats-bar">
-        <div class="stat-card">
-        <div class="stat-icon purple">
-            <div>
-                <div class="stat-value" id="statItens">-</div>
-                <div class="stat-label">Tipos Cadastrados</div>
-            </div>
-          </div>
-          <div class="stat-card">
-            <div>
-                <div class="stat-value" id="statOK">-</div>
-                <div class="stat-label">Estoque Normal</div>
-            </div>
+        <div class="alerta-estoque" id="alertEstoque" style="display:none;">
+            <strong>Atenção!</strong>
+            <span id="alertaTexto"></span>
         </div>
-        <div class="stat-card">
-            <div class="stat-icon orange"></div>
+
+
+        <!-- INDICADORES DE ESTOQUE -->
+
+        <div class="stats-bar">
+
+            <div class="stat-card">
+                <div class="stat-icon purple"></div>
+
+                <div>
+                    <div class="stat-value" id="statItens">-</div>
+                    <div class="stat-label">Tipos Cadastrados</div>
+                </div>
+            </div>
+
+
+            <div class="stat-card">
+                <div class="stat-icon purple"></div>
+
+                <div>
+                    <div class="stat-value" id="statOK">-</div>
+                    <div class="stat-label">Estoque Normal</div>
+                </div>
+            </div>
+
+
+            <div class="stat-card">
+                <div class="stat-icon orange"></div>
+
                 <div>
                     <div class="stat-value" id="statBaixo">-</div>
                     <div class="stat-label">Estoque Baixo (0-10)</div>
                 </div>
             </div>
-        <div class="stat-card">
-            <div class="stat-icon red"></div>
+
+
+            <div class="stat-card">
+                <div class="stat-icon red"></div>
+
                 <div>
                     <div class="stat-value" id="statZerado">-</div>
                     <div class="stat-label">Zerados / Esgotados</div>
-                 </div>
-             </div>
-        </div>
-        
-        <div class="main-grid">
-
-            <div>
-                <div class="card">
-                 <div class="card-header">
-                    <h2>Entrada de Medicamentos</h2>
-                 </div>
-                 <div class="card-body">
-
-                    <!-- Tabs: Novo ou Repor -->
-                     <div class="entrada-tabs">
-                        <button class="tab-btn active" id="tabNovo" onclick="setTab('setTabNovo')">Novo Medicamento</button>
-                        <button class="tab-btn" id="tabRepor" onclick="setTab('repor')">Repor Existente</button>
-
-                        <div id="PainelNovo">
-                            <div class="form-group">
-                                <label for="novoNome">Nome do Medicamento:</label>
-                                <input type="text" id="emNome" class="form-control" placeholder="Ex: Paracetamol 500mg" autocomplete="off">
-                            </div>
-                            <div class="form-group">
-                                <label for="emQtd">Quantidade:
-                                    <small>(unidades a adicionar)</small></label>
-                                <input type="number" id="emQtd" class="form-control" value="10" min="1">
-                            </div>
-                            <div class="form-group">
-                                <label for="emUnidade">Unidade:</label>
-                                <select id="emUnidade" class="form-control">
-                                    <option value="comprimidos">Comprimidos</option>
-                                    <option value="capsulas">Capsulas</option>
-                                    <option value="frascos">Frascos</option>
-                                    <option value="ampolas">Ampolas</option>
-                                    <option value="sachês">Sachês</option>
-                                    <option value="unidades">Unidades</option>
-                                </select>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="emCategoria">Categoria Farmacologia :</label>
-                                <select id="emCategoria" class="form-control">
-                                    <option value="analgesico/Antipiretico">Analgésico/Antipiretico</option>
-                                    <option value="anti-biotico">Antibiótico</option>
-                                    <option value="anti-virais">Antivirais</option>
-                                    <option value="anti-fungicos">Antifúngicos</option>
-                                    <option value="anti-inflamatorio">Anti-inflamatório</option>
-                                    <option value="anti-piretico">Antipirético</option>
-                                    <option value="anti-alergico">Anti-alérgico</option>
-                                    <option value="vitaminas">Vitaminas e Suplementos</option>
-                                    <option value="Protetor Gastrico">Protetor Gastrico</option>
-                                    <option value="Geral">Geral</option>
-                                </select>
-                            </div>
-
-                            <!-- Painel: repor estoque -->
-                            <div id="painelRepor" style="display:none">
-                                <div class="form-group"> 
-                                    <label for="selReporMed">Selecionar Medicamento</label>
-                                    <select id="selReporMed" class="form-control">
-                                        <option value="">--Selecione --</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="reporQtd">Quantidade a Adicionar</label>
-                                    <input type="number" id="reporQtd" class="form-control" value="10" min="1">
-                                </div>
-                                <div class="form-group">
-                                    <label for="reporObs">Observação <small>(opcional)</small></label>
-                                    <input type="text" id="reporObs" class="form-group" placeholder="Ex: Nota fiscal NF-001">
-                                </div>
-                            </div>
-
-                            <button class="btn-full btn-purple" onclick="reporEstoque()"> Adicionar ao estoque Existente</button>
-                        </div>
-                        <div>
-                     </div>
-
-                     <!-- Histórico de Entradas -->
-                     <div class="card" style="margin-top: 20px;">
-                        <div class="card-header">
-                            <h2>últimas entradas registradas</h2>
-                            <button class="btn-sm btn-secondary"
-                            onclick="carregarHistoricoEntradas()">🔄️</button>
-                        </div>
-                        <div class="card-body" id="historicoEntradas">
-                            <div class="empty-state">
-                                <div class="empty-icon">📄</div>
-                                <p>Nenhuma entrada registrada ainda.</p>
-                            </div>
-                        </div>
-                     </div>
-                 </div>
-                 
                 </div>
             </div>
+
         </div>
+
+
+        <!-- ÁREA PRINCIPAL -->
+
+        <div class="main-grid">
+
+
+            <!-- ENTRADA DE MEDICAMENTOS -->
+
+            <div class="card">
+
+                <div class="card-header">
+                    <h2>📦 Entrada de Medicamentos</h2>
+                </div>
+
+                <div class="card-body">
+
+                    <!-- ABAS -->
+
+                    <div class="entrada-tabs">
+
+                        <button
+                            class="tab-btn active"
+                            id="tabNovo"
+                            onclick="setTab('setTabNovo')">
+
+                            Novo Medicamento
+
+                        </button>
+
+                        <button
+                            class="tab-btn"
+                            id="tabRepor"
+                            onclick="setTab('repor')">
+
+                            Repor Existente
+
+                        </button>
+
+                    </div>
+
+
+                    <!-- PAINEL NOVO MEDICAMENTO -->
+
+                    <div id="PainelNovo">
+
+                        <div class="form-group">
+
+                            <label for="novoNome">
+                                Nome do Medicamento:
+                            </label>
+
+                            <input
+                                type="text"
+                                id="emNome"
+                                class="form-control"
+                                placeholder="Ex: Paracetamol 500mg"
+                                autocomplete="off"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="emQtd">
+                                Quantidade:
+                                <small>(unidades a adicionar)</small>
+                            </label>
+
+                            <input
+                                type="number"
+                                id="emQtd"
+                                class="form-control"
+                                value="10"
+                                min="1"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="emUnidade">
+                                Unidade:
+                            </label>
+
+                            <select id="emUnidade" class="form-control">
+
+                                <option value="comprimidos">Comprimidos</option>
+                                <option value="capsulas">Capsulas</option>
+                                <option value="frascos">Frascos</option>
+                                <option value="ampolas">Ampolas</option>
+                                <option value="sachês">Sachês</option>
+                                <option value="unidades">Unidades</option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="emCategoria">
+                                Categoria Farmacologia:
+                            </label>
+
+                            <select id="emCategoria" class="form-control">
+
+                                <option value="analgesico/Antipiretico">
+                                    Analgésico/Antipiretico
+                                </option>
+
+                                <option value="anti-biotico">Antibiótico</option>
+                                <option value="anti-virais">Antivirais</option>
+                                <option value="anti-fungicos">Antifúngicos</option>
+                                <option value="anti-inflamatorio">Anti-inflamatório</option>
+                                <option value="anti-piretico">Antipirético</option>
+                                <option value="anti-alergico">Anti-alérgico</option>
+                                <option value="vitaminas">Vitaminas e Suplementos</option>
+                                <option value="Protetor Gastrico">Protetor Gastrico</option>
+                                <option value="Geral">Geral</option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- PAINEL REPOR ESTOQUE -->
+
+                        <div id="painelRepor" style="display:none;">
+
+                            <div class="form-group">
+
+                                <label for="selReporMed">
+                                    Selecionar Medicamento
+                                </label>
+
+                                <select id="selReporMed" class="form-control">
+
+                                    <option value="">--Selecione --</option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="reporQtd">
+                                    Quantidade a Adicionar
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="reporQtd"
+                                    class="form-control"
+                                    value="10"
+                                    min="1"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="reporObs">
+                                    Observação <small>(opcional)</small>
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="reporObs"
+                                    class="form-control"
+                                    placeholder="Ex: Nota fiscal NF-001"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            class="btn-full btn-purple"
+                            onclick="reporEstoque()">
+
+                            Adicionar ao estoque Existente
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- HISTÓRICO DE ENTRADAS -->
+
+            <div class="card">
+
+                <div class="card-header">
+
+                    <h2>📋 Últimas Entradas Registradas</h2>
+
+                    <button
+                        class="btn-sm btn-secondary"
+                        onclick="carregarHistoricoEntradas()">
+
+                        🔄
+
+                    </button>
+
+                </div>
+
+
+                <div class="card-body" id="historicoEntradas">
+
+                    <div class="empty-state">
+
+                        <div class="empty-icon">📄</div>
+
+                        <p>Nenhuma entrada registrada ainda.</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
 </body>
 </html>
